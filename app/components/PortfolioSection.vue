@@ -22,7 +22,12 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        <article v-for="project in filteredProjects" :key="project.id" class="group">
+        <article
+          v-for="(project, i) in filteredProjects" :key="project.id"
+          class="group transition-all duration-700 ease-out"
+          :class="sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+          :style="{ transitionDelay: `${i * 100}ms` }"
+        >
           <NuxtLink :to="`/projects/${project.id}`" class="block">
             <div class="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 aspect-video">
               <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-end p-4">
@@ -30,8 +35,8 @@
                   <span class="text-xs font-medium text-white bg-primary/80 px-2 py-1 rounded-full">
                     {{ project.status }}
                   </span>
-                  <span class="text-xs font-medium text-white bg-dark/60 px-2 py-1 rounded-full">
-                    {{ project.category }}
+                  <span v-for="cat in project.category" :key="cat" class="text-xs font-medium text-white bg-dark/60 px-2 py-1 rounded-full">
+                    {{ cat }}
                   </span>
                 </div>
               </div>
@@ -62,14 +67,17 @@ const filters = [
   { label: 'All', value: 'all' },
   { label: 'Vue / Nuxt', value: 'vue' },
   { label: 'React / Next', value: 'react' },
-  { label: 'Enterprise', value: 'enterprise' }
+  { label: 'Enterprise', value: 'enterprise' },
+  { label: 'Exploration', value: 'exploration' }
 ]
+
+const sectionVisible = useSectionReveal('#portfolio')
 
 const activeFilter = ref('all')
 
 const filteredProjects = computed(() => {
   const { projects } = usePortfolio()
   if (activeFilter.value === 'all') return projects.value
-  return projects.value.filter(p => p.category === activeFilter.value)
+  return projects.value.filter(p => p.category.includes(activeFilter.value))
 })
 </script>

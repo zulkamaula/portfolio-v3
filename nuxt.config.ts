@@ -1,7 +1,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxt/icon'],
+  icon: {
+    serverBundle: { collections: ['lucide', 'mdi'] }
+  },
   css: ['~/assets/css/main.css'],
   nitro: { preset: 'netlify-static' },
   site: { url: 'https://portfolio-v3.netlify.app' },

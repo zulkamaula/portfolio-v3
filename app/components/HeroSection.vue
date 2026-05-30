@@ -17,13 +17,13 @@
 
           <h2 class="text-lg md:text-xl text-secondary dark:text-slate-400 mb-6">
             Frontend Engineer
-            <span class="text-dark dark:text-slate-300 font-semibold">@ PT. Anugrah Karya Digital Solusi</span>
+            <span class="text-dark dark:text-slate-300 font-semibold">| Vue/Nuxt.js | POS & SaaS Platform</span>
           </h2>
 
           <p class="text-secondary dark:text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-            Specializing in <span class="font-semibold text-dark dark:text-white">Vue & Nuxt</span> with experience across
-            <span class="font-semibold text-dark dark:text-white">React, Next, and Solid.js</span>.
-            Building high-performing POS, SaaS, and Enterprise systems that scale.
+            Engineer with <span class="font-semibold text-dark dark:text-white">4+ years</span> of experience building SaaS and POS
+            web applications using <span class="font-semibold text-dark dark:text-white">Vue.js, Nuxt, and TailwindCSS</span>.
+            Successfully developed 4+ internal tools and POS systems, improving store operational efficiency by up to 70%.
           </p>
 
           <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -47,12 +47,10 @@
 
         <div class="flex-1 flex justify-center">
           <div class="relative">
-            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
-              <img src="/img/self-pict-zulka.png" alt="Zulkariski Mauladi" class="w-full h-full object-cover" />
-            </div>
-            <div class="absolute -bottom-4 -right-4 bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg animate-float">
-              <Icon name="lucide:sparkles" class="inline mr-1" size="16" />
-              4+ Years
+            <div class="relative w-64 h-64 md:w-80 md:h-80 photo-ring">
+              <div class="w-full h-full rounded-full overflow-hidden shadow-xl">
+                <img src="/img/self-pict-zulka.png" alt="Zulkariski Mauladi" class="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +62,7 @@
 <script setup lang="ts">
 const stats = [
   { value: 4, suffix: '+', label: 'Years Exp' },
-  { value: 8, suffix: '+', label: 'Projects' },
+  { value: 5, suffix: '+', label: 'Projects' },
   { value: 4, suffix: '', label: 'Frameworks' },
   { value: 3, suffix: '+', label: 'Domains' }
 ]
@@ -101,3 +99,16 @@ function typeEffect() {
 
 onMounted(() => setTimeout(typeEffect, 500))
 </script>
+
+<style scoped>
+.photo-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: conic-gradient(from 15deg, transparent 0deg, transparent 25deg, rgba(148,163,184,0.3) 30deg, #94a3b8 45deg, #64748b 180deg, #94a3b8 315deg, rgba(148,163,184,0.3) 330deg, transparent 335deg, transparent 360deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+}
+</style>

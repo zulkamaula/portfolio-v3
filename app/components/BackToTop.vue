@@ -14,11 +14,12 @@
 <script setup lang="ts">
 const visible = ref(false)
 
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    visible.value = window.scrollY > 400
-  })
-})
+function onScroll() {
+  visible.value = window.scrollY > 400
+}
+
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })

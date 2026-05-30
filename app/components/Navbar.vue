@@ -2,8 +2,13 @@
   <header
     ref="headerRef"
     class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-    :class="[isScrolled ? 'bg-white/90 dark:bg-darker/90 backdrop-blur-md shadow-sm' : 'bg-transparent']"
+    :class="[isScrolled ? 'bg-white/90 dark:bg-darker/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-700/50' : 'bg-transparent']"
   >
+    <div
+      class="absolute bottom-0 left-[10%] w-[80%] h-[1.5px] pointer-events-none transition-opacity duration-200"
+      :class="isScrolled ? 'opacity-0' : 'opacity-100'"
+      style="background: linear-gradient(90deg, transparent, #14b8a680, #06b6d480, #14b8a680, transparent)"
+    ></div>
     <div class="container">
       <div class="flex items-center justify-between h-16 md:h-20">
         <NuxtLink to="/" class="text-xl font-bold text-primary hover:opacity-80 transition-opacity">
@@ -52,11 +57,12 @@ const links = [
 const isScrolled = ref(false)
 const isOpen = ref(false)
 
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    isScrolled.value = window.scrollY > 50
-  })
-})
+function onScroll() {
+  isScrolled.value = window.scrollY > 50
+}
+
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>

@@ -5,8 +5,8 @@
         <div>
           <h2 class="text-3xl font-bold text-white mb-4">ZRM</h2>
           <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
-            Frontend Engineer specializing in Vue, Nuxt, React & Next.js.
-            Passionate about building high-performing POS, SaaS, and Enterprise systems.
+            Frontend Engineer with 4+ years of experience building SaaS and POS
+            web applications using Vue.js, Nuxt, and TailwindCSS.
           </p>
         </div>
         <div class="md:text-right">

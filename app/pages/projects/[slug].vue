@@ -21,7 +21,7 @@
           <h1 class="text-3xl md:text-4xl font-bold text-dark dark:text-white mb-4">{{ project.title }}</h1>
 
           <div class="flex gap-2 mb-6">
-            <span class="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">{{ project.category }}</span>
+            <span v-for="cat in project.category" :key="cat" class="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">{{ cat }}</span>
             <span class="text-xs font-medium px-3 py-1 rounded-full"
               :class="project.status === 'completed' ? 'text-emerald-500 bg-emerald-100 dark:bg-emerald-900/30' : project.status === 'development' ? 'text-amber-500 bg-amber-100 dark:bg-amber-900/30' : 'text-blue-500 bg-blue-100 dark:bg-blue-900/30'"
             >
