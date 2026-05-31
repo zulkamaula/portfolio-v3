@@ -24,7 +24,6 @@
           <div class="flex-1 min-w-0 pt-1">
             <div class="flex items-center gap-2 flex-wrap mb-1">
               <span class="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">{{ exp.typeLabel }}</span>
-              <span v-if="exp.current" class="text-xs font-medium text-emerald-500 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-0.5 rounded-full">Current</span>
             </div>
             <h3 class="text-lg font-bold text-dark dark:text-white">{{ exp.role }}</h3>
             <p class="text-primary font-medium">{{ exp.company }}</p>

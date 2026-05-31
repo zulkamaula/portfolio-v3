@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between mb-2">
       <span class="text-sm font-medium text-dark dark:text-slate-300 flex items-center gap-2">
         <img v-if="skill.icon.startsWith('/')" :src="skill.icon" class="w-4 h-4" alt="" />
-        <Icon v-else :name="skill.icon" size="16" class="text-slate-400" />
+        <Icon v-else :name="skill.icon" size="16" />
         {{ skill.name }}
       </span>
       <span class="text-xs text-secondary dark:text-slate-500">{{ skill.level }}%</span>

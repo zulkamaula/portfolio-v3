@@ -16,9 +16,9 @@
         </NuxtLink>
 
         <nav class="hidden md:flex items-center gap-8">
-          <a v-for="link in links" :key="link.href" :href="link.href" class="text-sm font-medium text-dark dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors">
+          <NuxtLink v-for="link in links" :key="link.label" :to="link.to" class="text-sm font-medium text-dark dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors">
             {{ link.label }}
-          </a>
+          </NuxtLink>
           <ThemeToggle />
         </nav>
 
@@ -35,9 +35,9 @@
     <Transition name="slide">
       <div v-if="isOpen" class="md:hidden bg-white dark:bg-dark border-t dark:border-slate-700">
         <div class="container py-4 flex flex-col gap-4">
-          <a v-for="link in links" :key="link.href" :href="link.href" @click="isOpen = false" class="text-sm font-medium text-dark dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors py-2">
+          <NuxtLink v-for="link in links" :key="link.label" :to="link.to" @click="isOpen = false" class="text-sm font-medium text-dark dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors py-2">
             {{ link.label }}
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </Transition>
@@ -46,12 +46,12 @@
 
 <script setup lang="ts">
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' }
+  { label: 'Home', to: '/#home' },
+  { label: 'About', to: '/#about' },
+  { label: 'Experience', to: '/#experience' },
+  { label: 'Portfolio', to: '/#portfolio' },
+  { label: 'Skills', to: '/#skills' },
+  { label: 'Contact', to: '/#contact' }
 ]
 
 const isScrolled = ref(false)

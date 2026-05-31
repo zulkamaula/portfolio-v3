@@ -6,7 +6,7 @@ export const useSectionReveal = (sectionId: string, threshold = 0.15) => {
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        isVisible.value = entry.isIntersecting
+        isVisible.value = entry?.isIntersecting ?? false
       },
       { threshold }
     )

@@ -15,7 +15,7 @@
       </li>
     </ul>
     <div class="flex flex-wrap gap-1.5">
-      <TechBadge v-for="tech in tech" :key="tech" :label="tech" />
+      <TechBadge v-for="t in tech" :key="t" :label="t" />
     </div>
   </div>
 </template>

@@ -46,11 +46,9 @@
         </div>
 
         <div class="flex-1 flex justify-center">
-          <div class="relative">
-            <div class="relative w-64 h-64 md:w-80 md:h-80 photo-ring">
-              <div class="w-full h-full rounded-full overflow-hidden shadow-xl">
-                <img src="/img/self-pict-zulka.png" alt="Zulkariski Mauladi" class="w-full h-full object-cover" />
-              </div>
+          <div class="relative w-64 h-64 md:w-80 md:h-80 photo-ring">
+            <div class="w-full h-full rounded-full overflow-hidden shadow-xl">
+              <img src="/img/self-pict-zulka.png" alt="Zulkariski Mauladi" class="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -62,7 +60,7 @@
 <script setup lang="ts">
 const stats = [
   { value: 4, suffix: '+', label: 'Years Exp' },
-  { value: 5, suffix: '+', label: 'Projects' },
+  { value: 14, suffix: '+', label: 'Projects' },
   { value: 4, suffix: '', label: 'Frameworks' },
   { value: 3, suffix: '+', label: 'Domains' }
 ]
@@ -74,7 +72,7 @@ const charIndex = ref(0)
 const isDeleting = ref(false)
 
 function typeEffect() {
-  const current = words[wordIndex.value]
+  const current = words[wordIndex.value]!
   if (!isDeleting.value) {
     displayedText.value = current.slice(0, charIndex.value + 1)
     charIndex.value++
@@ -107,8 +105,16 @@ onMounted(() => setTimeout(typeEffect, 500))
   inset: 0;
   border-radius: 9999px;
   pointer-events: none;
-  background: conic-gradient(from 15deg, transparent 0deg, transparent 25deg, rgba(148,163,184,0.3) 30deg, #94a3b8 45deg, #64748b 180deg, #94a3b8 315deg, rgba(148,163,184,0.3) 330deg, transparent 335deg, transparent 360deg);
+  background: conic-gradient(from 15deg,
+    transparent 0deg, transparent 25deg,
+    rgba(20,184,166,0.3) 30deg,
+    #14b8a6 45deg,
+    #94a3b8 180deg,
+    #94a3b8 315deg,
+    rgba(148,163,184,0.3) 330deg,
+    transparent 335deg, transparent 360deg);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
 }
 </style>
+

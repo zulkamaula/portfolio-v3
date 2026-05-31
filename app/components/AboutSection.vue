@@ -52,12 +52,12 @@
 
 <script setup lang="ts">
 const coreTechs = [
-  { label: 'Vue.js', color: 'vue' },
-  { label: 'Nuxt', color: 'vue' },
-  { label: 'React', color: 'react' },
-  { label: 'Next.js', color: 'react' },
-  { label: 'TypeScript', color: 'ts' },
-  { label: 'TailwindCSS', color: 'default' }
+  { label: 'Vue.js', color: 'vue' as const },
+  { label: 'Nuxt', color: 'vue' as const },
+  { label: 'React', color: 'react' as const },
+  { label: 'Next.js', color: 'react' as const },
+  { label: 'TypeScript', color: 'ts' as const },
+  { label: 'TailwindCSS', color: 'default' as const }
 ]
 
 const socials = [

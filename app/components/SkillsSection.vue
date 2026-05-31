@@ -32,7 +32,7 @@
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-sm font-medium text-dark dark:text-slate-300 flex items-center gap-2">
                     <img v-if="skill.icon.startsWith('/')" :src="skill.icon" class="w-4 h-4" alt="" />
-                    <Icon v-else :name="skill.icon" size="16" class="text-slate-400" />
+                    <Icon v-else :name="skill.icon" size="16" />
                     {{ skill.name }}
                   </span>
                   <span class="text-xs text-secondary dark:text-slate-500">{{ skill.level }}%</span>
@@ -58,12 +58,12 @@ const isVisible = useSectionReveal('#skills')
 const groupedSkills = computed(() => {
   const allSkills = useSkills().skills.value
   const groups = [
+    { category: 'Soft Skills', icon: 'lucide:heart', skills: allSkills.filter(s => s.category === 'soft') },
     { category: 'Frontend', icon: 'lucide:monitor', skills: allSkills.filter(s => s.category === 'frontend') },
     { category: 'Backend & API', icon: 'lucide:server', skills: allSkills.filter(s => s.category === 'backend') },
     { category: 'Tools & DevOps', icon: 'lucide:wrench', skills: allSkills.filter(s => s.category === 'tools') },
     { category: 'Design', icon: 'lucide:pencil-ruler', skills: allSkills.filter(s => s.category === 'design') },
-    { category: 'Soft Skills', icon: 'lucide:heart', skills: allSkills.filter(s => s.category === 'soft') },
-    { category: 'Languages', icon: 'lucide:globe', skills: allSkills.filter(s => s.category === 'language') }
+    { category: 'Languages', icon: 'lucide:languages', skills: allSkills.filter(s => s.category === 'language') },
   ]
   return groups.filter(g => g.skills.length)
 })

@@ -23,7 +23,7 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         <article
-          v-for="(project, i) in filteredProjects" :key="project.id"
+          v-for="(project, i) in paginatedProjects" :key="project.id"
           class="group transition-all duration-700 ease-out"
           :class="sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
           :style="{ transitionDelay: `${i * 100}ms` }"
@@ -58,6 +58,36 @@
           </NuxtLink>
         </article>
       </div>
+
+      <div v-if="totalPages > 1" class="flex items-center justify-center gap-4 mt-12">
+        <button
+          :disabled="currentPage <= 1"
+          @click="currentPage--"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+          :class="currentPage <= 1
+            ? 'text-slate-300 dark:text-slate-600 cursor-not-allowed'
+            : 'text-dark dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'"
+        >
+          <Icon name="lucide:chevron-left" size="16" class="inline" />
+          Prev
+        </button>
+
+        <span class="text-sm text-secondary dark:text-slate-500">
+          Page {{ currentPage }} of {{ totalPages }}
+        </span>
+
+        <button
+          :disabled="currentPage >= totalPages"
+          @click="currentPage++"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+          :class="currentPage >= totalPages
+            ? 'text-slate-300 dark:text-slate-600 cursor-not-allowed'
+            : 'text-dark dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'"
+        >
+          Next
+          <Icon name="lucide:chevron-right" size="16" class="inline" />
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -65,19 +95,31 @@
 <script setup lang="ts">
 const filters = [
   { label: 'All', value: 'all' },
-  { label: 'Vue / Nuxt', value: 'vue' },
-  { label: 'React / Next', value: 'react' },
   { label: 'Enterprise', value: 'enterprise' },
+  { label: 'POS', value: 'pos' },
+  { label: 'SaaS', value: 'saas' },
   { label: 'Exploration', value: 'exploration' }
 ]
 
 const sectionVisible = useSectionReveal('#portfolio')
+
+const pageSize = 6
+const currentPage = ref(1)
 
 const activeFilter = ref('all')
 
 const filteredProjects = computed(() => {
   const { projects } = usePortfolio()
   if (activeFilter.value === 'all') return projects.value
-  return projects.value.filter(p => p.category.includes(activeFilter.value))
+  return projects.value.filter(p => p.category.includes(activeFilter.value as any))
 })
+
+const totalPages = computed(() => Math.ceil(filteredProjects.value.length / pageSize))
+
+const paginatedProjects = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  return filteredProjects.value.slice(start, start + pageSize)
+})
+
+watch(activeFilter, () => { currentPage.value = 1 })
 </script>

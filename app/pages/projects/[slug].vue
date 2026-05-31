@@ -32,12 +32,20 @@
           <p class="text-secondary dark:text-slate-400 leading-relaxed mb-8">{{ project.longDescription }}</p>
 
           <div class="flex flex-wrap gap-3">
-            <a v-for="link in project.links" :key="link.label" :href="link.url" target="_blank"
-              class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-all text-sm"
-            >
-              <Icon :name="link.label === 'GitHub' ? 'mdi:github' : 'lucide:external-link'" size="16" />
-              {{ link.label }}
-            </a>
+            <template v-for="link in project.links" :key="link.label">
+              <a v-if="!link.private" :href="link.url" target="_blank"
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-primary text-white font-medium rounded-full hover:opacity-90 transition-all text-sm"
+              >
+                <Icon :name="link.label === 'GitHub' ? 'mdi:github' : 'lucide:external-link'" size="16" />
+                {{ link.label }}
+              </a>
+              <span v-else
+                class="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 font-medium rounded-full text-sm cursor-not-allowed"
+              >
+                <Icon name="lucide:lock" size="16" />
+                {{ link.label }}
+              </span>
+            </template>
           </div>
         </div>
       </div>
