@@ -30,6 +30,11 @@
         >
           <NuxtLink :to="`/projects/${project.id}`" class="block">
             <div class="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-700 aspect-video">
+              <img v-if="project.image !== '/img/projects/placeholder.svg'" :src="project.image"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="" />
+              <div v-else class="w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-500">
+                <Icon name="lucide:image" size="40" />
+              </div>
               <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10 flex items-end p-4">
                 <div class="flex gap-2">
                   <UBadge color="neutral" variant="solid" size="sm">
@@ -39,9 +44,6 @@
                     {{ cat }}
                   </UBadge>
                 </div>
-              </div>
-              <div class="w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-500">
-                <Icon name="lucide:image" size="40" />
               </div>
             </div>
 

@@ -79,7 +79,8 @@ export const projects: Project[] = [
     endDate: 'Aug 2022',
     tech: ['Vue.js', 'Figma', 'Bootstrap', 'TailwindCSS', 'REST APIs'],
     category: ['enterprise', 'pos'],
-    image: '/img/projects/placeholder.svg',
+    image: '/img/projects/sarirasa-webpos/img-1.png',
+    images: ['/img/projects/sarirasa-webpos/img-1.png', '/img/projects/sarirasa-webpos/img-2.png', '/img/projects/sarirasa-webpos/img-3.png', '/img/projects/sarirasa-webpos/img-4.png', '/img/projects/sarirasa-webpos/img-5.png'],
     links: [{ label: 'GitHub', url: 'https://github.com/zulkamaula/FE_SarirasaWPOS', private: true }],
     status: 'completed'
   },

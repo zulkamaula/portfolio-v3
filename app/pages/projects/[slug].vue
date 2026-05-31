@@ -16,25 +16,37 @@
 
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <div class="relative aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 overflow-hidden group"
-            @mouseenter="paused = true" @mouseleave="paused = false">
-            <div class="flex h-full transition-transform duration-500 ease-out"
-              :style="{ transform: `translateX(-${current * 100}%)` }">
-              <div v-for="(img, i) in images" :key="i"
-                class="min-w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-500 shrink-0">
-                <img v-if="img !== '/img/projects/placeholder.svg'" :src="img"
-                  class="w-full h-full object-cover" alt="" />
-                <Icon v-else name="lucide:image" size="64" />
+          <div v-if="images.length > 1" class="group relative aspect-video rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700">
+            <UCarousel
+              v-slot="{ item }"
+              loop
+              dots
+              arrows
+              :autoplay="{ delay: 5000 }"
+              :items="images"
+              class="h-full"
+              :ui="{
+                viewport: 'h-full',
+                container: 'flex h-full',
+                item: 'min-w-0 shrink-0 basis-full h-full',
+                arrows: 'opacity-0 group-hover:opacity-100 transition-opacity duration-200',
+                prev: 'start-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 dark:bg-slate-800 text-dark dark:text-white shadow-md',
+                next: 'end-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 dark:bg-slate-800 text-dark dark:text-white shadow-md',
+                dots: 'absolute bottom-3 inset-x-0 flex items-center justify-center gap-2',
+                dot: 'size-2 rounded-full bg-secondary/50 data-[state=active]:bg-secondary transition-colors cursor-pointer'
+              }"
+            >
+              <img v-if="item !== '/img/projects/placeholder.svg'" :src="item"
+                class="w-full h-full object-contain" alt="" />
+              <div v-else class="w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-500">
+                <Icon name="lucide:image" size="64" />
               </div>
-            </div>
+            </UCarousel>
+          </div>
 
-            <div v-if="images.length > 1"
-              class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
-              <button v-for="(_, i) in images" :key="i"
-                class="w-2 h-2 rounded-full transition-all duration-300"
-                :class="current === i ? 'bg-white w-3' : 'bg-white/50 hover:bg-white/70'"
-                @click="current = i" />
-            </div>
+          <div v-else class="aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500 overflow-hidden">
+            <img v-if="images[0] !== '/img/projects/placeholder.svg'" :src="images[0]" class="w-full h-full object-cover" alt="" />
+            <Icon v-else name="lucide:image" size="64" />
           </div>
         </div>
 
@@ -96,18 +108,6 @@ const images = computed(() => {
   if (project.value?.images?.length) return project.value.images
   if (project.value?.image) return [project.value.image]
   return ['/img/projects/placeholder.svg']
-})
-
-const current = ref(0)
-const paused = ref(false)
-
-onMounted(() => {
-  const interval = setInterval(() => {
-    if (!paused.value && images.value.length > 1) {
-      current.value = (current.value + 1) % images.value.length
-    }
-  }, 5000)
-  onUnmounted(() => clearInterval(interval))
 })
 
 useHead({
