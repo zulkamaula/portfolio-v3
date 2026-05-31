@@ -12,7 +12,7 @@
           v-for="(group, index) in groupedSkills"
           :key="group.category"
           :data-index="index"
-          class="skill-category transition-all duration-300 ease-out"
+          class="skill-category transition-all duration-300 ease-out py-6"
           :class="categoriesVisible.has(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
         >
           <h3 class="text-lg font-semibold text-dark dark:text-white mb-6 flex items-center gap-2">
