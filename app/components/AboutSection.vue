@@ -3,7 +3,7 @@
     <div class="container">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="text-primary font-semibold uppercase tracking-wider text-sm mb-2">About Me</p>
+          <p class="section-label">About Me</p>
           <h2 class="section-title mb-6 text-balance">
             Crafting Digital Solutions with Precision
           </h2>

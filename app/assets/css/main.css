@@ -1,6 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --breakpoint-2xl: 1024px;
+  --color-dark: #1e293b;
+  --color-darker: #0f172a;
+  --color-secondary: #64748b;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
 
 @layer base {
   html {
@@ -14,11 +26,28 @@
   ::selection {
     @apply bg-primary/20 text-primary;
   }
+
+  a {
+    color: inherit;
+  }
+
+  a:where(.nav-link, .social-link) {
+    @apply text-dark dark:text-slate-300;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 @layer components {
   .section-padding {
     @apply py-24 md:py-32;
+  }
+
+  .section-label {
+    @apply text-primary font-semibold uppercase tracking-wider text-sm mb-2;
   }
 
   .section-title {
@@ -33,5 +62,9 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .cursor-glow {
+    background: radial-gradient(800px at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(20, 184, 166, 0.07), transparent 40%);
   }
 }

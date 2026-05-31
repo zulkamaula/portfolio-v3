@@ -2,13 +2,19 @@
   <section id="skills" class="section-padding bg-slate-50 dark:bg-dark/50 relative">
     <div class="container">
       <div class="text-center mb-16">
-        <p class="text-primary font-semibold uppercase tracking-wider text-sm mb-2">Skills</p>
+        <p class="section-label">Skills</p>
         <h2 class="section-title mb-4">Technology & Tools</h2>
         <p class="section-subtitle">Technologies I use to build modern web applications</p>
       </div>
 
       <div class="max-w-4xl mx-auto space-y-10">
-        <div v-for="group in groupedSkills" :key="group.category" class="reveal">
+        <div
+          v-for="(group, index) in groupedSkills"
+          :key="group.category"
+          :data-index="index"
+          class="skill-category transition-all duration-300 ease-out"
+          :class="categoriesVisible.has(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+        >
           <h3 class="text-lg font-semibold text-dark dark:text-white mb-6 flex items-center gap-2">
             <Icon :name="group.icon" size="20" class="text-primary" />
             {{ group.category }}
@@ -40,7 +46,7 @@
                 <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
                     class="h-full bg-gradient-to-r from-primary to-emerald-400 rounded-full transition-all duration-1000 ease-out"
-                    :style="{ width: isVisible ? skill.level + '%' : '0%' }"
+                    :style="{ width: categoriesVisible.has(index) ? skill.level + '%' : '0%' }"
                   ></div>
                 </div>
               </div>
@@ -53,7 +59,27 @@
 </template>
 
 <script setup lang="ts">
-const isVisible = useSectionReveal('#skills')
+const categoriesVisible = reactive(new Set<number>())
+
+onMounted(() => {
+  const observers: IntersectionObserver[] = []
+  document.querySelectorAll('.skill-category').forEach((el) => {
+    const i = Number(el.getAttribute('data-index'))
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          categoriesVisible.add(i)
+        } else {
+          categoriesVisible.delete(i)
+        }
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    )
+    observer.observe(el)
+    observers.push(observer)
+  })
+  onUnmounted(() => observers.forEach(o => o.disconnect()))
+})
 
 const groupedSkills = computed(() => {
   const allSkills = useSkills().skills.value

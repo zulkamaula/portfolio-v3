@@ -8,11 +8,8 @@ export const usePortfolio = () => {
     frameworks: ['Vue', 'Nuxt', 'React', 'Next']
   }))
 
-  const featuredProjects = computed(() => projects.filter(p => !p.category.includes('exploration')))
-
   return {
     projects: computed(() => projects),
-    featuredProjects,
     stats
   }
 }

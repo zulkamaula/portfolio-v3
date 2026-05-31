@@ -1,6 +1,6 @@
 <template>
   <span
-    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium"
+    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium shadow-sm"
     :class="colorClass"
   >
     <Icon v-if="icon" :name="icon" width="14" height="14" />

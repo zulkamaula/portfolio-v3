@@ -2,7 +2,7 @@
   <section id="contact" class="section-padding bg-slate-50 dark:bg-dark/50 relative">
     <div class="container">
       <div class="text-center mb-16">
-        <p class="text-primary font-semibold uppercase tracking-wider text-sm mb-2">Contact</p>
+        <p class="section-label">Contact</p>
         <h2 class="section-title mb-4">Get In Touch!</h2>
         <p class="section-subtitle">Have a project in mind? Let's build something great together.</p>
       </div>
