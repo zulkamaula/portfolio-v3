@@ -11,8 +11,9 @@
     ></div>
     <div class="container">
       <div class="flex items-center justify-between h-16 md:h-20">
-        <NuxtLink to="/" class="text-xl font-bold text-primary hover:opacity-80 transition-opacity">
-          zulkariski
+        <NuxtLink to="/" class="block hover:opacity-60 opacity-80 transition-opacity shrink-0">
+          <img src="/logos/zrm-favico-light.png" alt="Zulkariski Mauladi" class="h-9 block dark:hidden" />
+          <img src="/logos/zrm-favico-dark.png" alt="Zulkariski Mauladi" class="h-9 hidden dark:block" />
         </NuxtLink>
 
         <nav class="hidden md:flex items-center gap-8">

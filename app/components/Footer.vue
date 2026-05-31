@@ -3,7 +3,10 @@
     <div class="container py-16">
       <div class="grid md:grid-cols-2 gap-8">
         <div>
-          <h2 class="text-3xl font-bold text-white mb-4">ZRM</h2>
+          <div class="flex items-center gap-px">
+            <h1 class="text-2xl font-extrabold text-white mb-4 tracking-tighter">ZRM</h1>
+            <span class="size-1.5 bg-amber-400 rounded-full mb-1" />
+          </div>
           <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
             Frontend Engineer with 4+ years of experience building SaaS and POS
             web applications using Vue.js, Nuxt, and TailwindCSS.

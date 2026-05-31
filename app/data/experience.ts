@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
       'Collaborated with system analyst and backend engineers to resolve UI/UX issues and simplify workflows, helping operators complete daily tasks around 15–20% faster.',
       'Contributed to setup CSP, SEO-ready company profile and internal web tools.'
     ],
-    tech: ['Vue 2/3', 'Nuxt', 'TypeScript', 'TailwindCSS', 'Pinia', 'Axios']
+    tech: ['Vue 2/3', 'Nuxt', 'Next', 'TypeScript', 'TailwindCSS', 'Pinia', 'SWR', 'Axios']
   },
   {
     role: 'Frontend Engineer (Freelance)',
@@ -33,7 +33,7 @@ export const experiences: Experience[] = [
       'Translated Figma designs into reusable, production-ready UI components and proposed UX improvements, cutting design/development rework by roughly 20–30%.',
       'Optimized RESTful API integrations and responsive layouts, reducing visible API errors and improving load times for core transaction screens by about 20–25%.'
     ],
-    tech: ['Vue 3', 'Vuexy', 'TailwindCSS', 'TypeScript', 'Figma', 'REST APIs']
+    tech: ['Vue 3', 'Vuexy', 'Vuex', 'TailwindCSS', 'TypeScript', 'Figma', 'REST APIs', 'Stripe']
   },
   {
     role: 'Frontend Engineer (Freelance)',
@@ -46,7 +46,7 @@ export const experiences: Experience[] = [
       'Designed and implemented an end-to-end SaaS product including subscription plans, payment integration, and onboarding flow for independent users and small teams.',
       'Developed email notification system for certificate expiry alerts and domain health status monitoring.'
     ],
-    tech: ['Vue 3', 'Pinia', 'TailwindCSS', 'TypeScript']
+    tech: ['Vue 3', 'Pinia', 'TailwindCSS', 'TypeScript', 'REST APIs', 'Stripe']
   },
   {
     role: 'Frontend Developer (Full-time)',
@@ -59,6 +59,6 @@ export const experiences: Experience[] = [
       'Delivered responsive, cross-browser UIs for internal tools, reducing display/compatibility complaints from outlets and accelerating adoption across multiple branches.',
       'Contributed to modules such as Cashier, Kitchen, Online Ordering, and Dashboard Management System.'
     ],
-    tech: ['Vue.js', 'Bootstrap', 'TailwindCSS', 'Figma', 'REST APIs']
+    tech: ['Vue.js', 'Vuex', 'Bootstrap', 'Figma', 'EJS', 'REST APIs']
   }
 ]

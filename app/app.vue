@@ -15,13 +15,32 @@
 </template>
 
 <script setup lang="ts">
+const FAV = { light: '/favicon_io_light', dark: '/favicon_io_dark' }
+
 useHead({
-  bodyAttrs: {
-    class: 'antialiased'
-  }
+  bodyAttrs: { class: 'antialiased' },
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: `${FAV.light}/favicon.ico`, id: 'favicon-ico' },
+    { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${FAV.light}/favicon-16x16.png`, id: 'favicon-16' },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${FAV.light}/favicon-32x32.png`, id: 'favicon-32' },
+    { rel: 'apple-touch-icon', sizes: '180x180', href: `${FAV.light}/apple-touch-icon.png`, id: 'favicon-apple' },
+  ]
 })
 
 onMounted(() => {
+  const favicons = ['favicon-ico', 'favicon-16', 'favicon-32', 'favicon-apple']
+  const updateFav = () => {
+    const base = document.documentElement.classList.contains('dark') ? FAV.dark : FAV.light
+    favicons.forEach(id => {
+      const el = document.querySelector<HTMLLinkElement>(`link[id="${id}"]`)
+      if (el) el.href = el.href.replace(FAV.light, base).replace(FAV.dark, base)
+    })
+  }
+
+  const observer = new MutationObserver(updateFav)
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+  onUnmounted(() => observer.disconnect())
+
   const update = (e: MouseEvent) => {
     document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`)
     document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`)
