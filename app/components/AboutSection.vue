@@ -54,7 +54,7 @@
 const coreTechs = [
   { label: 'Vue.js', color: 'vue' as const },
   { label: 'Nuxt', color: 'vue' as const },
-  { label: 'React', color: 'react' as const },
+  { label: 'Solid.js', color: 'react' as const },
   { label: 'Next.js', color: 'react' as const },
   { label: 'TypeScript', color: 'ts' as const },
   { label: 'TailwindCSS', color: 'default' as const }
