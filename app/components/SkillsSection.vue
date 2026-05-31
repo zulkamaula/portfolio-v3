@@ -11,9 +11,8 @@
         <div
           v-for="(group, index) in groupedSkills"
           :key="group.category"
-          :data-index="index"
-          class="skill-category transition-all duration-300 ease-out py-6"
-          :class="categoriesVisible.has(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+          class="skill-category transition-all duration-300"
+          :class="activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
         >
           <h3 class="text-lg font-semibold text-dark dark:text-white mb-6 flex items-center gap-2">
             <Icon :name="group.icon" size="20" class="text-primary" />
@@ -45,8 +44,8 @@
                 </div>
                 <div class="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                   <div
-                    class="h-full bg-gradient-to-r from-primary to-emerald-400 rounded-full transition-all duration-1000 ease-out"
-                    :style="{ width: categoriesVisible.has(index) ? skill.level + '%' : '0%' }"
+                    class="h-full bg-linear-to-r from-primary to-emerald-400 rounded-full transition-all duration-500 ease-out"
+                    :style="{ width: activeIndex === index ? skill.level + '%' : '0%' }"
                   ></div>
                 </div>
               </div>
@@ -59,26 +58,25 @@
 </template>
 
 <script setup lang="ts">
-const categoriesVisible = reactive(new Set<number>())
+const activeIndex = ref(-1)
 
 onMounted(() => {
-  const observers: IntersectionObserver[] = []
-  document.querySelectorAll('.skill-category').forEach((el) => {
-    const i = Number(el.getAttribute('data-index'))
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          categoriesVisible.add(i)
-        } else {
-          categoriesVisible.delete(i)
-        }
-      },
-      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
-    )
-    observer.observe(el)
-    observers.push(observer)
-  })
-  onUnmounted(() => observers.forEach(o => o.disconnect()))
+  const onScroll = () => {
+    const vpCenter = window.innerHeight / 2
+    const categories = document.querySelectorAll<HTMLElement>('.skill-category')
+    let found = -1
+    for (let i = 0; i < categories.length; i++) {
+      const el = categories[i]
+      if (!el) break
+      const top = el.getBoundingClientRect().top
+      if (top > vpCenter) break
+      found = i
+    }
+    activeIndex.value = found
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
 })
 
 const groupedSkills = computed(() => {
