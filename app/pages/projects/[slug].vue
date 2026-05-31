@@ -16,7 +16,7 @@
 
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <div v-if="images.length > 1" class="group relative aspect-video rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700">
+          <div v-if="images.length > 1" class="group relative aspect-[4/3] sm:aspect-video rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-700">
             <UCarousel
               v-slot="{ item }"
               loop
@@ -44,7 +44,7 @@
             </UCarousel>
           </div>
 
-          <div v-else class="aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500 overflow-hidden">
+          <div v-else class="aspect-[4/3] sm:aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500 overflow-hidden">
             <img v-if="images[0] !== '/img/projects/placeholder.svg'" :src="images[0]" class="w-full h-full object-cover" alt="" />
             <Icon v-else name="lucide:image" size="64" />
           </div>

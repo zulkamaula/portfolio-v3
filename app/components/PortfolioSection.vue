@@ -1,13 +1,13 @@
 <template>
   <section id="portfolio" class="section-padding relative">
     <div class="container">
-      <div class="text-center mb-16">
+      <div class="text-center mb-12 sm:mb-16">
         <p class="section-label">Portfolio</p>
         <h2 class="section-title mb-4">Latest Projects</h2>
         <p class="section-subtitle">Case studies of my exploration and workplace projects</p>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <div class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12">
         <UButton
           v-for="f in filters"
           :key="f.value"
@@ -21,7 +21,7 @@
         </UButton>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
         <article
           v-for="(project, i) in paginatedProjects" :key="project.id"
           class="group relative rounded-xl transition-all duration-700 ease-out"
@@ -61,7 +61,7 @@
         </article>
       </div>
 
-      <div v-if="totalPages > 1" class="flex justify-center mt-12">
+      <div v-if="totalPages > 1" class="flex justify-center mt-8 sm:mt-12">
         <UPagination
           v-model:page="currentPage"
           :total="filteredProjects.length"
@@ -106,4 +106,12 @@ const paginatedProjects = computed(() => {
 })
 
 watch(activeFilter, () => { currentPage.value = 1 })
+
+watch(currentPage, () => {
+  const el = document.getElementById('portfolio')
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 80
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+})
 </script>
