@@ -3,9 +3,12 @@ export interface Project {
   title: string
   description: string
   longDescription: string
+  startDate?: string
+  endDate?: string
   tech: string[]
   category: ('enterprise' | 'exploration' | 'pos' | 'saas')[]
   image: string
+  images?: string[]
   links: { label: string; url: string; private?: boolean }[]
   status: 'completed' | 'development' | 'workplace'
 }
@@ -16,8 +19,10 @@ export const projects: Project[] = [
     title: 'CheckSSLBot — SSL Certificate Monitoring Dashboard',
     description: 'Automated SSL monitoring across multiple domains and subdomains with pricing comparison dashboard and email alerts for certificate expiry.',
     longDescription: 'Built a Vue, Pinia, and Tailwind-based web app for automated SSL monitoring across multiple domains and subdomains with pricing comparison dashboard and email alerts for certificate expiry.',
+    startDate: 'Apr 2025',
+    endDate: 'Apr 2026',
     tech: ['Vue 3', 'Pinia', 'TailwindCSS'],
-    category: ['exploration'],
+    category: ['saas'],
     image: '/img/projects/placeholder.svg',
     links: [{ label: 'GitHub', url: 'https://github.com/zulkamaula' }],
     status: 'completed'
@@ -27,6 +32,8 @@ export const projects: Project[] = [
     title: 'EPL Module (Environment Planning System) — JIMMS SuperApp',
     description: 'Digitized toll road maintenance inspections and centralized bridge/road condition data into a single dashboard.',
     longDescription: 'Digitized toll road maintenance inspections and centralized bridge/road condition data into a single dashboard integrated with JMTM\'s smart maintenance ecosystem; converted PowerPoint workflows into an interactive web app.',
+    startDate: 'Sep 2024',
+    endDate: 'Nov 2025',
     tech: ['Next.js', 'Mantine', 'SWR', 'Axios'],
     category: ['enterprise'],
     image: '/img/projects/placeholder.svg',
@@ -38,10 +45,16 @@ export const projects: Project[] = [
     title: 'SaaS POS System — Upvendo',
     description: 'Interconnected SaaS POS applications (KIOSK, Online Ordering, Backoffice) for merchant operations.',
     longDescription: 'Built interconnected applications (kiosk.upvendo.com, zestidoo.com, backoffice.upvendo.com), implementing production-ready UI/UX designs and robust API integrations for merchant operations.',
+    startDate: 'Jun 2024',
+    endDate: 'Aug 2025',
     tech: ['Vue 3', 'Vuexy', 'TailwindCSS', 'REST APIs'],
     category: ['pos', 'saas'],
     image: '/img/projects/placeholder.svg',
-    links: [{ label: 'Kiosk', url: 'https://kiosk.upvendo.com' }, { label: 'Backoffice', url: 'https://backoffice.upvendo.com' }],
+    links: [
+      { label: 'Kiosk', url: 'https://upvendo.com/pages/self-service-kiosks' },
+      { label: 'Zestidoo', url: 'https://upvendo.com/pages/online-ordering' },
+      { label: 'Backoffice', url: 'https://upvendo.com/pages/backoffice' }
+    ],
     status: 'workplace'
   },
   {
@@ -49,6 +62,8 @@ export const projects: Project[] = [
     title: 'JMGuest — Guest Book WebApp',
     description: 'Guest registration system with KTP camera scanning, photo capture, CRUD, search, and Excel export.',
     longDescription: 'Developed a guest registration system with KTP camera scanning, photo capture, CRUD, search, and Excel export, supporting multiple guest types with customizable forms.',
+    startDate: 'Oct 2023',
+    endDate: 'Aug 2024',
     tech: ['Laravel', 'Vue.js', 'Bootstrap', 'REST APIs'],
     category: ['enterprise'],
     image: '/img/projects/placeholder.svg',
@@ -60,6 +75,8 @@ export const projects: Project[] = [
     title: 'Sarirasa WebPOS',
     description: 'Web-based POS modules for Cashier, Kitchen, Online Ordering, and Dashboard Management System for Sate Khas Senayan.',
     longDescription: 'Developed web-based POS modules for Cashier, Kitchen, Online Ordering, and Dashboard Management System for Sate Khas Senayan to enable efficient sales, reporting, and daily monitoring.',
+    startDate: 'Feb 2021',
+    endDate: 'Aug 2022',
     tech: ['Vue.js', 'Figma', 'Bootstrap', 'TailwindCSS', 'REST APIs'],
     category: ['enterprise', 'pos'],
     image: '/img/projects/placeholder.svg',
@@ -115,6 +132,8 @@ export const projects: Project[] = [
     title: 'CSIRT — Cybersecurity CMS & Admin Panel',
     description: 'CMS and admin panel for configuring public-facing cybersecurity compliance pages at Jasamarga.',
     longDescription: 'Developed a CMS and admin panel to set up and configure public pages for cybersecurity legalitas at Jasamarga. Combined two codebases: the admin panel (adminpanel-csirt) for backend configuration and the frontend (fe-csirt) for the public-facing cybersecurity compliance pages.',
+    startDate: 'Feb 2023',
+    endDate: 'Feb 2025',
     tech: ['Vue 3', 'TypeScript', 'SCSS', 'CSS', 'Docker'],
     category: ['enterprise'],
     image: '/img/projects/placeholder.svg',
@@ -167,5 +186,20 @@ export const projects: Project[] = [
     image: '/img/projects/placeholder.svg',
     links: [{ label: 'GitHub', url: 'https://github.com/zulkamaula/reactapp-pokebox' }],
     status: 'completed'
+  },
+  {
+    id: 'kligi',
+    title: 'Kligi — Dental Clinic SaaS',
+    description: 'Integrated SaaS platform for dental clinic management: merchant onboarding, operational dashboard, and landing page.',
+    longDescription: 'A Solid.js-based SaaS platform for dental clinic management consisting of three integrated applications: Kligi Internal (merchant management), Kligi Dashboard (daily clinic operations), and Kligi Onboarding (landing page). Built as an exploration project in collaboration with a backend engineer.',
+    tech: ['Solid.js', 'TypeScript', 'TailwindCSS'],
+    category: ['saas', 'exploration'],
+    image: '/img/projects/placeholder.svg',
+    links: [
+      { label: 'Kligi Internal', url: '', private: true },
+      { label: 'Kligi Dashboard', url: '', private: true },
+      { label: 'Kligi Onboarding', url: '', private: true }
+    ],
+    status: 'development'
   }
 ]

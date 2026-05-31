@@ -1,22 +1,45 @@
 <template>
   <main class="pt-24">
     <div v-if="project" class="container py-12">
-      <NuxtLink to="/#portfolio"
-        class="inline-flex items-center gap-2 text-sm text-secondary dark:text-slate-400 hover:text-primary transition-colors mb-8">
-        <Icon name="lucide:arrow-left" size="16" />
-        Back to Portfolio
-      </NuxtLink>
+      <div class="flex justify-between mb-8">
+        <NuxtLink to="/#portfolio"
+          class="inline-flex items-center gap-2 text-sm text-secondary dark:text-slate-400 hover:text-primary transition-colors">
+          <Icon name="lucide:arrow-left" size="16" />
+          Back to Portfolio
+        </NuxtLink>
+
+        <div v-if="project.startDate" class="inline-flex items-center gap-1.5 text-sm text-secondary dark:text-slate-400">
+          <span>{{ project.startDate }} — {{ project.endDate || 'Present' }}</span>
+          <Icon name="lucide:calendar" size="14" class="mb-1" />
+        </div>
+      </div>
 
       <div class="grid lg:grid-cols-2 gap-12">
         <div>
-          <div
-            class="aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-400 dark:text-slate-500 overflow-hidden">
-            <Icon name="lucide:image" size="64" />
+          <div class="relative aspect-video rounded-xl bg-slate-100 dark:bg-slate-700 overflow-hidden group"
+            @mouseenter="paused = true" @mouseleave="paused = false">
+            <div class="flex h-full transition-transform duration-500 ease-out"
+              :style="{ transform: `translateX(-${current * 100}%)` }">
+              <div v-for="(img, i) in images" :key="i"
+                class="min-w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-500 shrink-0">
+                <img v-if="img !== '/img/projects/placeholder.svg'" :src="img"
+                  class="w-full h-full object-cover" alt="" />
+                <Icon v-else name="lucide:image" size="64" />
+              </div>
+            </div>
+
+            <div v-if="images.length > 1"
+              class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+              <button v-for="(_, i) in images" :key="i"
+                class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="current === i ? 'bg-white w-3' : 'bg-white/50 hover:bg-white/70'"
+                @click="current = i" />
+            </div>
           </div>
         </div>
 
         <div>
-          <h1 class="text-3xl md:text-4xl font-bold text-dark dark:text-white mb-4">{{ project.title }}</h1>
+          <h1 class="text-3xl md:text-4xl font-bold text-dark dark:text-white mb-2">{{ project.title }}</h1>
 
           <div class="flex gap-2 mb-6 capitalize">
             <span v-for="cat in project.category" :key="cat"
@@ -68,6 +91,24 @@ const project = computed(() => projects.value.find(p => p.id === route.params.sl
 if (!project.value) {
   throw createError({ statusCode: 404, message: 'Project not found' })
 }
+
+const images = computed(() => {
+  if (project.value?.images?.length) return project.value.images
+  if (project.value?.image) return [project.value.image]
+  return ['/img/projects/placeholder.svg']
+})
+
+const current = ref(0)
+const paused = ref(false)
+
+onMounted(() => {
+  const interval = setInterval(() => {
+    if (!paused.value && images.value.length > 1) {
+      current.value = (current.value + 1) % images.value.length
+    }
+  }, 5000)
+  onUnmounted(() => clearInterval(interval))
+})
 
 useHead({
   title: `${project.value.title} — Zulkariski Mauladi`,

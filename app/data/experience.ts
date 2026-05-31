@@ -36,6 +36,19 @@ export const experiences: Experience[] = [
     tech: ['Vue 3', 'Vuexy', 'TailwindCSS', 'TypeScript', 'Figma', 'REST APIs']
   },
   {
+    role: 'Frontend Engineer (Freelance)',
+    company: 'CheckSSLBot',
+    location: 'Remote',
+    period: 'Apr 2025 — Apr 2026',
+    type: 'saas',
+    descriptions: [
+      'Built a Vue, Pinia, and Tailwind-based web app for automated SSL monitoring across multiple domains and subdomains with pricing comparison dashboard and email alerts for certificate expiry.',
+      'Designed and implemented an end-to-end SaaS product including subscription plans, payment integration, and onboarding flow for independent users and small teams.',
+      'Developed email notification system for certificate expiry alerts and domain health status monitoring.'
+    ],
+    tech: ['Vue 3', 'Pinia', 'TailwindCSS', 'TypeScript']
+  },
+  {
     role: 'Frontend Developer (Full-time)',
     company: 'Sarirasa Group (CV. Sarirasa Nusantara)',
     location: 'Central Jakarta, Indonesia',
